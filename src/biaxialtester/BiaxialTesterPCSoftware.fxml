@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="732.0" prefWidth="1039.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biaxialtesterpcproject.BiaxialTesterPCSoftwareController">
+   <children>
+      <HBox prefHeight="26.0" prefWidth="964.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="53.0" prefWidth="222.0" text="----X Axis----" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="225.0" text="----Y Axis----" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="119.0" text="Motor 1" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="enable1" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#enable1" prefHeight="39.0" prefWidth="105.0" style="-fx-background-color: green;" text="Disable" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="119.0" text="Motor 2" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="enable2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#enable2" prefHeight="39.0" prefWidth="105.0" style="-fx-background-color: green;" text="Disable" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="119.0" text="Motor 3" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="enable3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#enable3" prefHeight="39.0" prefWidth="105.0" style="-fx-background-color: green;" text="Disable" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="119.0" text="Motor 4" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="enable4" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#enable4" prefHeight="39.0" prefWidth="105.0" style="-fx-background-color: green;" text="Disable" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+            </VBox>
+            <ComboBox fx:id="commPortSelector" prefHeight="25.0" prefWidth="182.0" promptText="Communication Port">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </ComboBox>
+            <Button fx:id="updateComm" mnemonicParsing="false" onAction="#updatePressed" text="Update" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="189.0" prefWidth="305.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="298.0">
+                     <children>
+                        <Label text="Move X Axis">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <GridPane alignment="CENTER" prefWidth="298.0">
+                          <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="moveThreeExtX" mnemonicParsing="false" onAction="#moveThreeExtX" text="&lt;&lt;&lt;" />
+                              <Button fx:id="moveTwoExtX" mnemonicParsing="false" onAction="#moveTwoExtX" text="&lt;&lt;" GridPane.columnIndex="1" />
+                              <Button fx:id="moveOneExtX" contentDisplay="CENTER" mnemonicParsing="false" onAction="#moveOneExtX" text="&lt;" GridPane.columnIndex="2" />
+                              <Button fx:id="moveOneExtX" alignment="CENTER" mnemonicParsing="false" onAction="#moveOneIntX" text="&gt;" GridPane.columnIndex="4" />
+                              <Button mnemonicParsing="false" onAction="#moveTwoIntX" text="&gt;&gt;" GridPane.columnIndex="5" />
+                              <Button mnemonicParsing="false" onAction="#moveThreeIntX" text="&gt;&gt;&gt;" GridPane.columnIndex="6" />
+                              <Button fx:id="homeX" mnemonicParsing="false" text="Home" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="298.0">
+                     <children>
+                        <Label text="Move Y Axis">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <GridPane alignment="CENTER" prefWidth="298.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="moveThreeExtY" mnemonicParsing="false" onAction="#moveThreeExtY" text="&lt;&lt;&lt;" />
+                              <Button fx:id="moveTwoExtY" mnemonicParsing="false" onAction="#moveTwoExtY" text="&lt;&lt;" GridPane.columnIndex="1" />
+                              <Button fx:id="moveOneExtY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#moveOneExtY" text="&lt;" GridPane.columnIndex="2" />
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#moveOneIntY" text="&gt;" GridPane.columnIndex="4" />
+                              <Button mnemonicParsing="false" onAction="#moveTwoIntY" text="&gt;&gt;" GridPane.columnIndex="5" />
+                              <Button mnemonicParsing="false" onAction="#moveThreeIntY" text="&gt;&gt;&gt;" GridPane.columnIndex="6" />
+                              <Button fx:id="homeY" mnemonicParsing="false" text="Home" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="298.0">
+                     <children>
+                        <Label text="Move All Axis">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <GridPane alignment="CENTER" prefWidth="298.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="moveThreeExt" mnemonicParsing="false" onAction="#moveThreeExt" text="&lt;&lt;&lt;" />
+                              <Button fx:id="moveTwoExt" mnemonicParsing="false" onAction="#moveTwoExt" text="&lt;&lt;" GridPane.columnIndex="1" />
+                              <Button fx:id="moveOneExt" contentDisplay="CENTER" mnemonicParsing="false" onAction="#moveOneExt" text="&lt;" GridPane.columnIndex="2" />
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#moveOneInt" text="&gt;" GridPane.columnIndex="4" />
+                              <Button mnemonicParsing="false" onAction="#moveTwoInt" text="&gt;&gt;" GridPane.columnIndex="5" />
+                              <Button mnemonicParsing="false" onAction="#moveThreeInt" text="&gt;&gt;&gt;" GridPane.columnIndex="6" />
+                              <Button fx:id="home" mnemonicParsing="false" text="Home" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+            <LineChart fx:id="graph" title="Stress-strain curve">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </LineChart>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" top="40.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="254.0" prefWidth="980.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Sensor 1 Value (N)" />
+                  <TextField fx:id="sensor1Val" editable="false">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Sensor 2 Value (N)" />
+                  <TextField fx:id="sensor2Val" editable="false">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Sensor 3 Value (N)" />
+                  <TextField fx:id="sensor3Val" editable="false">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Sensor 4 Value (N)" />
+                  <TextField fx:id="sensor4Val" editable="false">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="194.0" prefWidth="208.0">
+               <children>
+                  <Label text="Command Terminal" />
+                  <TextArea fx:id="commandOut" disable="true" prefHeight="99.0" prefWidth="202.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <TextField fx:id="commandInput" onKeyPressed="#onEnterPressedCommand" prefHeight="25.0" prefWidth="186.0" />
+               </children>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="194.0" prefWidth="285.0">
+               <children>
+                  <Button fx:id="fileChooser" mnemonicParsing="false" onAction="#chooseFile" prefHeight="25.0" prefWidth="172.0" text="File Chooser" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="File: " />
+                        <TextField fx:id="fileName" editable="false" prefHeight="25.0" prefWidth="246.0" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="runProgram" mnemonicParsing="false" onAction="#runProgram" text="Run" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="20.0" top="60.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>
