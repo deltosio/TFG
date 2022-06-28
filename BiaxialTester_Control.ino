@@ -27,6 +27,15 @@ const int en[] = {26, 32, 38, 44};
 const int steps = 200;
 int microPausa = 1000;
 
+int milimetersx = 0;
+int milimetersy = 0;
+
+float scale_factor[4] = {10678.1, 10678.1 / (9.81 / 8.21) , 10678.1  / (9.81 / 8.15), 10678.1  / (9.81 / 8.18)} ;
+//105.849 * 9.81 * 7.03 / (9.81/14.35); // approx Netwtons
+
+
+float force[4]; // last values read
+float fy, fx;
 
 void moveRev(int milimeters, int data) {
     if (data < 4 && data >= 0) { //Cambiar direccion de motor en concreto
@@ -50,6 +59,7 @@ void moveRev(int milimeters, int data) {
       }
       delayMicroseconds(microPausa);
     }
+    milimetersx += milimeters;
   }
   else if (data == 5) { //Cambiar direccion de motores 3-4
     //Multiply 100 (steps/milimeter) to do the steps
@@ -63,6 +73,7 @@ void moveRev(int milimeters, int data) {
       }
       delayMicroseconds(microPausa);
     }
+    milimetersy += milimeters;
   }
   else if (data == 6) { //Cambiar direccion de todos los motores
     //Multiply 100 (steps/milimeter) to do the steps
@@ -76,6 +87,8 @@ void moveRev(int milimeters, int data) {
       }
       delayMicroseconds(microPausa);
     }
+    milimetersx += milimeters;
+    milimetersy += milimeters;
   }
   
 }
@@ -109,16 +122,20 @@ void dirMotor(int data) {
     for (int i = 0; i < 2; i++) {
       digitalWrite(dirPin[i], !digitalRead(dirPin[i]));
     }
+    milimetersx = 0;
   }
   else if (data == 5) { //Cambiar direccion de motores 3-4
     for (int i = 2; i < 4; i++) {
       digitalWrite(dirPin[i], !digitalRead(dirPin[i]));
     }
+    milimetersy = 0;
   }
   else if (data == 6) { //Cambiar direccion de todos los motores
     for (int i = 0; i < 4; i++) {
       digitalWrite(dirPin[i], !digitalRead(dirPin[i]));
     }
+    milimetersx = 0;
+    milimetersy = 0;
   }
 }
 
@@ -135,12 +152,19 @@ void tare() {
 //Mandar la información de las celulas de carga
 void sendRawData() {
   scales.read(results);
+  Serial.print( milimetersx );
+  Serial.print( "\t" );
+  Serial.print( milimetersy );
+  Serial.print( "\t" );
   for (int i=0; i<scales.get_count(); ++i) {;
-    Serial.print( (int)((results[i] - cal_values[i])/9.8));  
-    Serial.print( (i!=scales.get_count()-1)?"\t":"\n");
+    Serial.print( force[i] = abs(results[i] / scale_factor[i]));  
+    Serial.print( (i!=scales.get_count()-1 )?"\t":"\n");
   }  
+  fy = (force[0] + force[3]) / 2;
+  fx = (force[1] + force[2]) / 2;
   delay(10);
 }
+
 
 void setup() {
   Serial.begin(115200);
@@ -167,7 +191,6 @@ void loop() {
   
   if (Serial.available()) {
     tare();
-    sendRawData();
     String command;
     char parameter,motor;
     int data,milimeters;
@@ -212,6 +235,10 @@ void loop() {
         Serial.print(" ");
         Serial.print(digitalRead(dirPin[3]));
         Serial.print("\n");
+        break;
+
+        case 'n': //Escala de peso
+        sendRawData();
         break;
       default:
         break;
