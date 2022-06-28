@@ -17,18 +17,16 @@ import javafx.scene.control.TextField;
 import com.fazecast.jSerialComm.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 
 /**
  * FXML Controller class
@@ -72,7 +70,7 @@ public class BiaxialTesterPCSoftwareController implements Initializable {
     @FXML
     private Button home;
     @FXML
-    private LineChart<?, ?> graph;
+    private LineChart<Number, Number> graph;
     @FXML
     private TextField sensor1Val;
     @FXML
@@ -103,6 +101,13 @@ public class BiaxialTesterPCSoftwareController implements Initializable {
     final FileChooser fc = new FileChooser();
     
     private boolean programProcess = false;
+    
+    private int milimetersX = 0;
+    private int milimetersY = 0;
+    private float[] forces;
+    
+    XYChart.Series<Number, Number> dataX = new XYChart.Series<>();
+    XYChart.Series<Number, Number> dataY = new XYChart.Series<>();
     /**
      * Initializes the controller class.
      */
@@ -240,6 +245,17 @@ public class BiaxialTesterPCSoftwareController implements Initializable {
     @FXML
     private synchronized void runProgram(ActionEvent event) throws InterruptedException {
         if(!programProcess){
+            var xAxis = new NumberAxis();
+            xAxis.setLabel("Milimeters");
+
+            var yAxis = new NumberAxis();
+            yAxis.setLabel("Newtons");
+
+            graph = new LineChart<>(xAxis, yAxis);
+            graph.setTitle("Strain test");
+            
+            dataX.getData().clear();
+            dataY.getData().clear();
             File doc = file;  
             MyThread mt = new MyThread();
             mt.doc = doc;
@@ -284,12 +300,28 @@ public class BiaxialTesterPCSoftwareController implements Initializable {
                 //System.out.println(msg);
                 String[] measures = correctMessage.split("\t");
                 
+                milimetersX = Integer.parseInt(measures[0]);
+                milimetersY = Integer.parseInt(measures[1]);
+                
+                for(int i = 0; i < 4; i++){
+                    forces[i] = Integer.parseInt(measures[i+2]);
+                }
+                graph.getData().clear();
+                
+                dataX.setName("Force X Axis");
+                dataX.getData().add(new XYChart.Data<>(milimetersX, (forces[0] + forces[1])/2));
+                
+                dataY.setName("Force Y Axis");
+                dataY.getData().add(new XYChart.Data<>(milimetersY, (forces[2] + forces[3])/2));
+                
+                graph.getData().add(dataX);
+                graph.getData().add(dataY);
                 //Actualización valor fuerza sensores
                 try{
-                sensor1Val.setText(measures[0]);
-                sensor2Val.setText(measures[1]);
-                sensor3Val.setText(measures[2]);
-                sensor4Val.setText(measures[3]);
+                sensor1Val.setText(measures[2]);
+                sensor2Val.setText(measures[3]);
+                sensor3Val.setText(measures[4]);
+                sensor4Val.setText(measures[5]);
                 }
                 catch(Exception e){} 
             }
@@ -722,6 +754,8 @@ public class BiaxialTesterPCSoftwareController implements Initializable {
             if(commPort != null)
                 commPort.writeBytes(b, scan.nextLine().getBytes().length);
                 try {
+                    Thread.sleep(2000);
+                    commPort.writeBytes(b, scan.nextLine().getBytes().length);
                     Thread.sleep(2000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(BiaxialTesterPCSoftwareController.class.getName()).log(Level.SEVERE, null, ex);
